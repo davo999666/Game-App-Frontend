@@ -5,6 +5,7 @@ import {clearUserData, setUserData} from "../../gamefighter/features/user/userSl
 import {clearSentences} from "../../gamefighter/features/word/sentencesSlice.js";
 import {clearWordData} from "../../gamefighter/features/word/wordSlice.js";
 
+
 const levels = ['A1', 'A2', 'B1', 'B2'];
 const languages = [
     { name: "Armenian", code: "am" },
@@ -21,6 +22,7 @@ const Start = () => {
     const [learnLang, setLearnLang] = useState('');
     const [knowLang, setKnowLang] = useState('');
     const token = localStorage.getItem("token");
+
 
     const handleStartGame = () => {
         dispatch(clearSentences());

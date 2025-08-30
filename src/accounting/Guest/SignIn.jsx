@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {login} from "../../api/signInApi.js";
+import {useLoginMutation} from "../../api/apiUser.js";
 
 const SignIn = ({setIsSignIn}) => {
     const [emailOrUsername, setEmailOrUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const [loginMutation] = useLoginMutation();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const data = await login(emailOrUsername, password);
+            const data = await loginMutation({ login: emailOrUsername, password }).unwrap();
             if (data.token) {
                 setIsSignIn(false)
                  localStorage.setItem("token", data.token);

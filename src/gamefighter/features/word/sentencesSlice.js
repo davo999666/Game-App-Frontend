@@ -1,6 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice} from "@reduxjs/toolkit";
 
-// Initial state
+
+
 const initialState = {
     currentSent: [],
 };

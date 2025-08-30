@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {registerUser} from "../../api/sigunUpApi.js";
+import {useRegisterUserMutation} from "../../api/apiUser.js";
+
 
 const SignUp = () => {
     const [login, setLogin] = useState("");
@@ -11,6 +12,7 @@ const SignUp = () => {
     const [country, setCountry] = useState("");
     const [birthday, setBirthday] = useState("");
     const navigate = useNavigate();
+    const [registerUser] = useRegisterUserMutation();
 
 
     const handleSubmit = async (e) => {
@@ -22,7 +24,7 @@ const SignUp = () => {
         }
 
         try {
-            const data = await registerUser({login, password, fullName, email, country, birthday});
+            const data = await registerUser({login, password, fullName, email, country, birthday}).unwrap();
 
             if (data){
                 navigate("/Verification", { state: { email } });

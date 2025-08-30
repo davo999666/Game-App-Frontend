@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import {sendVerifyCode} from "../api/hendlSendCod.js";
+import {useSendVerifyCodeMutation} from "../api/apiUser.js";
+
 
 
 const Verification = () => {
@@ -8,6 +9,7 @@ const Verification = () => {
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
+    const [sendVerifyCode] = useSendVerifyCodeMutation();
 
     const email = location.state?.email || "";
 
