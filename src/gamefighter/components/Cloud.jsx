@@ -1,7 +1,7 @@
 import {useContext, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { createCloud, rectCollision} from "../utils/function.js";
-import {addSentenceKnow, addWordLearn} from "../features/word/wordSlice.js";
+import {addSentenceKnow, addWordLearn, clearWordData} from "../features/word/wordSlice.js";
 import {GameRefContext} from "../utils/gameScreenContext.js";
 import {removeFirstItem} from "../features/word/sentencesSlice.js";
 
@@ -18,6 +18,7 @@ const Cloud = ({ clouds, setClouds }) => {
             const sentence = sentences.currentSent[0];
             if (sentence) {
                 const [know, learn] = Object.entries(sentence)[0];
+                dispatch(clearWordData())
                 dispatch(addWordLearn(learn));
                 dispatch(addSentenceKnow(know));
                 dispatch(removeFirstItem());

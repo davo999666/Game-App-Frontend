@@ -6,7 +6,6 @@ import {handleClick, handleMouseMove} from "../handlers/gameHandlers.js";
 const Fighter = ({setBullets}) => {
     const [positionX, setPositionX] = useState(0);
     const imgRef = useRef(null);
-    const marginPercent = -0.04;
     const gameRef = useContext(GameRefContext);
 
     useEffect(() => {
@@ -14,11 +13,11 @@ const Fighter = ({setBullets}) => {
         if (!element) return;
 
         const mouseMoveHandler = (event) => {
-            handleMouseMove(event, gameRef, imgRef, marginPercent, setPositionX);
+            handleMouseMove(event, gameRef, imgRef, setPositionX);
         };
         const clickHandler = (event) => {
             const bulletY = gameRef.current.offsetHeight - imgRef.current.offsetHeight;
-            const newBullet = handleClick(event, positionX, bulletY,gameRef.current.offsetWidth);
+            const newBullet = handleClick(event, positionX, bulletY );
             setBullets(p => [...p, newBullet]);
         };
 
@@ -29,7 +28,7 @@ const Fighter = ({setBullets}) => {
             element.removeEventListener('mousemove', mouseMoveHandler);
             element.removeEventListener('click', clickHandler);
         };
-    }, [gameRef, positionX]);
+    }, [positionX]);
 
     return (
         <div

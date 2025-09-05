@@ -1,6 +1,7 @@
 import {BulletClass} from "../classes/bulletClass.js";
 
-export const handleMouseMove = (event, gameRef, imgRef, marginPercent, setPositionX) => {
+export const handleMouseMove = (event, gameRef, imgRef, setPositionX) => {
+    const marginPercent = -0.08;
     if (!gameRef.current || !imgRef.current) return;
     const bounds = gameRef.current.getBoundingClientRect();
     const mouseX = event.clientX - bounds.left;
@@ -15,7 +16,7 @@ export const handleMouseMove = (event, gameRef, imgRef, marginPercent, setPositi
     setPositionX(clampedX);
 };
 
-export const handleClick = (event, positionX, bulletY, gameWidth) => {
+export const handleClick = (event, positionX, bulletY) => {
     event.preventDefault();
-    return new BulletClass (positionX, bulletY, gameWidth);
+    return new BulletClass (positionX, bulletY );
 };
